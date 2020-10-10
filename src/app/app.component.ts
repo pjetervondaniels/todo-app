@@ -21,6 +21,7 @@ export class AppComponent {
         Validators.required
       ])]
     });
+    this.load();
   }
 
   alteraTexto(){
@@ -39,6 +40,13 @@ export class AppComponent {
     if(index !== -1){
       this.todos.splice(index, 1);
     }
+    this.save();
+  }
+
+  load(){
+    const data = localStorage.getItem('todos');
+    this.todos = JSON.parse(data);
+
   }
 
   clear(){
@@ -47,14 +55,18 @@ export class AppComponent {
 
   markAsDone(todo: Todo){
     todo.done = true;
+    this.save();
+
   }
   
   markAsUndone(todo: Todo){
     todo.done = false;
+    this.save();
+
   }
 
   save(){
-    const data = JSON.stringify(this.todos);
+    let data = JSON.stringify(this.todos);
     localStorage.setItem('todos', data);
   }
 }
