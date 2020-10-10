@@ -1,7 +1,7 @@
 <h1>{{title}} </h1>
 <ul>
   <li *ngFor="let todo of todos"> {{todo.toString()}} | 
-    <button *ngIf="!todo.done"> CONCLUDED </button> | 
-    <button *ngIf="todo.done"> REMAKE </button>   
+    <button *ngIf="!todo.done" (click)="markAsDone(todo)"> CONCLUDED </button> | 
+    <button *ngIf="todo.done" (click)="markAsUndone(todo)"> REMAKE </button>   
     <button (click)="remove(todo)"> REMOVE </button></li>
 </ul>
