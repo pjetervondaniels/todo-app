@@ -5,3 +5,12 @@
     <button *ngIf="todo.done" (click)="markAsUndone(todo)"> REMAKE </button>   
     <button (click)="remove(todo)"> REMOVE </button></li>
 </ul>
+
+<form [formGroup] = "form">
+  <fieldset>
+    <label for=""> to Do </label>
+    <input type="text" placeholder="to do name" maxlength="60" formControlName="title">
+    <small *ngIf="form.controls.title.invalid && !form.controls.title.pristine"> This place required to a 3 at 60 characters.</small>
+    <button> Save </button>
+  </fieldset>
+</form>
