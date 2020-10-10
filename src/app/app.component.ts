@@ -21,20 +21,26 @@ export class AppComponent {
         Validators.required
       ])]
     });
-    this.todos.push(new Todo(1, 'Run!', false));
-    this.todos.push(new Todo(2, 'Go to Gym!', false));
-    this.todos.push(new Todo(3, 'Buy milk!', true));
   }
 
   alteraTexto(){
     this.title = 'Texto alterado!';
   }
-
+  add(){
+    const title = this.form.controls['title'].value;
+    const id = this.todos.length + 1;
+    this.todos.push( new Todo(id, title, false));
+    this.clear();
+  }
   remove(todo: Todo){
     const index = this.todos.indexOf(todo);
     if(index !== -1){
       this.todos.splice(index, 1);
     }
+  }
+
+  clear(){
+    this.form.reset();
   }
 
   markAsDone(todo: Todo){

@@ -1,5 +1,6 @@
 <h1>{{title}} </h1>
 <ul>
+  <p *ngIf="todos.length === 0"> <small> Nothing to Do! </small></p>
   <li *ngFor="let todo of todos"> {{todo.toString()}} | 
     <button *ngIf="!todo.done" (click)="markAsDone(todo)"> CONCLUDED </button> | 
     <button *ngIf="todo.done" (click)="markAsUndone(todo)"> REMAKE </button>   
@@ -11,6 +12,6 @@
     <label for=""> to Do </label>
     <input type="text" placeholder="to do name" maxlength="60" formControlName="title">
     <small *ngIf="form.controls.title.invalid && !form.controls.title.pristine"> This place required to a 3 at 60 characters.</small>
-    <button> Save </button>
+    <button [disabled] = "form.controls.title.invalid" (click)="add()"> Save </button>
   </fieldset>
 </form>
